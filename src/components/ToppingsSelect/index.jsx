@@ -12,10 +12,12 @@ const ToppingsSelect = ({ toppings }) => {
   }
 
   let toppingsSelectedCount = 0;
+  let price = 0;
   let toppingsSelectedPrice = 0;
   toppingsState.forEach((topping) => {
     toppingsSelectedCount += topping.selected;
-    topping.selected ? toppingsSelectedPrice += topping.price : null;
+    topping.selected ? price += topping.price : null;
+    toppingsSelectedPrice = Math.round((price + Number.EPSILON) * 100) / 100;
   });
 
   return (

@@ -12,12 +12,16 @@ const ToppingsSelect = ({ toppings }) => {
   }
 
   let toppingsSelectedCount = 0;
-  toppingsState.forEach((topping) => toppingsSelectedCount += topping.selected);
+  let toppingsSelectedPrice = 0;
+  toppingsState.forEach((topping) => {
+    toppingsSelectedCount += topping.selected;
+    topping.selected ? toppingsSelectedPrice += topping.price : null;
+  });
 
   return (
     <>
       <p>Choose as many toppings as you want</p>
-      <p>Selected toppings: {toppingsSelectedCount}, total price: 0 Euro</p>
+      <p>Selected toppings: {toppingsSelectedCount}, total price: {toppingsSelectedPrice} Euro</p>
         
       <div className="toppings">
         {toppingsState.map((topping, index) => (
